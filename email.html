@@ -21,17 +21,16 @@
     <style>
         .container {
             font-family: Verdana, Geneva, Tahoma, sans-serif;
-            background-color: #545454;
             display: grid;
-            grid-template-columns: 25% 50% 25%;
+            grid-template-columns: 100%;
             grid-template-rows: auto auto auto auto;
             gap: 0px 0px;
             grid-auto-flow: row;
             grid-template-areas:
-                "left header right"
-                "left order right"
-                "left shipping right"
-                "left footer right";
+                "header"
+                "order"
+                "shipping"
+                "footer";
         }
 
         .order {
@@ -42,14 +41,13 @@
         .shipping {
             background-color: #eeeeee;
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: 1fr;
+            grid-template-columns: auto auto;
+            grid-template-rows: auto;
             gap: 0px 0px;
             grid-template-areas:
                 "customer ship";
             grid-area: shipping;
             color: black;
-            border: 50px;
 
         }
 
@@ -57,21 +55,19 @@
             grid-area: customer;
             font-size: 14px;
             text-align: center;
-            border: 50px;
         }
 
         .ship {
             grid-area: ship;
             font-size: 14px;
             text-align: center;
-            border: 50px;
         }
 
         .footer {
             grid-area: footer;
             background-color: black;
             color: #eeeeee;
-            font-size: smaller;
+            font-size: 10px;
             text-align: center;
         }
 
@@ -97,12 +93,38 @@
 
 <body>
     <div class="container">
-        <div class="order"></div>
+        <div class="order">||</div>
         <div class="shipping">
             <div class="customer">
-                <table width="50%" border="0" align="center" cellpadding="5" cellspacing="0" style="border-collapse:collapse;background-color:#eeeeee;border:3px solid black;color:black;font-size:16px;font-family:Verdana, Geneva, Tahoma, sans-serif;"><tbody><tr><td colspan="1" style="padding:5px;background-color:black;color:white;font-size:150%;text-align:center;">Customer</td></tr><tr><td style="background-color:white;">Jeremy Guill<br>dob:05/</td></tr></tbody></table>
+                <table width="50%" border="0" align="center" cellpadding="5" cellspacing="0"
+                    style="border-collapse:collapse;background-color:#eeeeee;border:3px solid black;color:black;font-size:16px;font-family:Verdana, Geneva, Tahoma, sans-serif;">
+                    <tbody>
+                        <tr>
+                            <td colspan="1"
+                                style="padding:5px;background-color:black;color:white;font-size:150%;text-align:center;">
+                                Customer</td>
+                        </tr>
+                        <tr>
+                            <td style="background-color:white;">Jeremy Guill<br>dob:05/31/1978</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <div class="ship">shipping</div>
+            <div class="ship">
+                <table width="50%" border="0" align="center" cellpadding="5" cellspacing="0"
+                    style="border-collapse:collapse;background-color:#eeeeee;border:3px solid black;color:black;font-size:16px;font-family:Verdana, Geneva, Tahoma, sans-serif;">
+                    <tbody>
+                        <tr>
+                            <td colspan="1"
+                                style="padding:5px;background-color:black;color:white;font-size:150%;text-align:center;">
+                                Shipping</td>
+                        </tr>
+                        <tr>
+                            <td style="background-color:white;">Jeremy Guill<br>2408 SW Oakwood Drive<br>Dallas, Oregon 97338</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
         <div class="footer">
             <div class="dailyVersesWrapper"></div>

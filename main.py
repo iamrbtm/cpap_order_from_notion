@@ -41,20 +41,12 @@ def send_email(items):
     
     listofitems = ""
     for item in items:
-        listofitems = listofitems + item + "\n"
-
+        listofitems = listofitems + item + "<br>"
     # Create the body of the message (a plain-text and an HTML version).
     text = listofitems
-    html = """
-    <html>
-    <head></head>
-    <body>
-        <p>"""+listofitems+"""
-        </p>
-    </body>
-    </html>
-    """
-
+    html1 = """<!DOCTYPE html><html lang="en"><head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> <script> $(document).ready(function () { $.ajax({ url: 'https://dailyverses.net/get/verse?language=niv&isdirect=1&url=' + window.location .hostname, dataType: 'JSONP', success: function (json) { $(".dailyVersesWrapper").prepend(json.html); } }); }); </script> <title>CPAP Supply Request </title> <style> .container { font-family: Verdana, Geneva, Tahoma, sans-serif; display: grid; grid-template-columns: 100%; grid-template-rows: auto auto auto auto; gap: 0px 0px; grid-auto-flow: row; grid-template-areas: "header" "order" "shipping" "footer"; } .order { grid-area: order; background-color: white; } .shipping { background-color: #eeeeee; display: grid; grid-template-columns: auto auto; grid-template-rows: auto; gap: 0px 0px; grid-template-areas: "customer ship"; grid-area: shipping; color: black; } .customer { grid-area: customer; font-size: 14px; text-align: center; } .ship { grid-area: ship; font-size: 14px; text-align: center; } .footer { grid-area: footer; background-color: black; color: #eeeeee; font-size: 10px; text-align: center; } .header { grid-area: header; background-color: #ffcc99; color: #242424; font-size: 30px; text-align: center; padding-top: 20px; padding-bottom: 20px; } .left { grid-area: left; } .right { grid-area: right; } </style></head><body> <div class="container"> <div class="order">"""
+    html2 = """</div> <div class="shipping"> <div class="customer"> <table width="50%" border="0" align="center" cellpadding="5" cellspacing="0" style="border-collapse:collapse;background-color:#eeeeee;border:3px solid black;color:black;font-size:16px;font-family:Verdana, Geneva, Tahoma, sans-serif;"> <tbody> <tr> <td colspan="1" style="padding:5px;background-color:black;color:white;font-size:150%;text-align:center;"> Customer</td> </tr> <tr> <td style="background-color:white;">Jeremy Guill<br>dob:05/31/1978</td> </tr> </tbody> </table> </div> <div class="ship"> <table width="50%" border="0" align="center" cellpadding="5" cellspacing="0" style="border-collapse:collapse;background-color:#eeeeee;border:3px solid black;color:black;font-size:16px;font-family:Verdana, Geneva, Tahoma, sans-serif;"> <tbody> <tr> <td colspan="1" style="padding:5px;background-color:black;color:white;font-size:150%;text-align:center;"> Shipping</td> </tr> <tr> <td style="background-color:white;">Jeremy Guill<br>2408 SW Oakwood Drive<br>Dallas, Oregon 97338</td> </tr> </tbody> </table> </div> </div> <div class="footer"> <div class="dailyVersesWrapper"></div> </div> <div class="header"> CPAP Supply Request </div> <div class="left"></div> <div class="right"></div> </div></body></html>"""
+    html = html1 + listofitems + html2
     # Record the MIME types of both parts - text/plain and text/html.
     part1 = MIMEText(text, 'plain')
     part2 = MIMEText(html, 'html')
