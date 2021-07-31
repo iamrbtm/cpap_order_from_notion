@@ -1,12 +1,15 @@
+#!/usr/bin/env python3
+#-*- coding: utf-8 -*-
+
 import requests
-import json
+import json, os
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from datetime import datetime, date
 
 def auth(auth_name):
-        with open("key.txt") as file:
+        with open(os.path.join(dir_path,"key.txt")) as file:
             data = file.read()
             keys = json.loads(data)
         return keys[auth_name]
@@ -115,6 +118,9 @@ def send_email(items):
     mail.login('ilyajlyadyfi@gmail.com', 'Braces10/')
     mail.sendmail(me, you, msg.as_string())
     mail.quit()
+
+dir_path = os.path.dirname(os.path.realpath(__file__))
+
 comp_log = open ('completion log.txt', 'a')
 comp_log.write(date.today().strftime('%m-%d-%Y')+"\n")
 items = check_for_orderables()
@@ -142,4 +148,3 @@ send_email(orderLineItems)
 print("Email Sent Sucessfully")
 comp_log.write("Email Sent Sucessfully"+"\n"+"\n")
 comp_log.close()
-
